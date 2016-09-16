@@ -3,7 +3,7 @@
 #endif
 #define _connect_included
 
-forward bool OnClientPreConnect(const char name[], char password[255], const char ip[], const char steamID[], char rejectReason[255]);
+forward bool OnClientPreConnect(const char[] name, char password[255], const char[] ip, const char[] steamID, char rejectReason[255]);
 
 public Extension __ext_Connect =
 {
