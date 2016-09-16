@@ -239,6 +239,11 @@ class ConnectReduxConfig(object):
     # Don't omit the frame pointer.
     cxx.cflags += ['/Oy-']
 
+    if cxx.version >= 1900:
+      cxx.linkflags += [
+        'legacy_stdio_definitions.lib',
+      ]
+
   def configure_linux(self, cxx):
     cxx.defines += ['_LINUX', 'POSIX']
     cxx.linkflags += ['-Wl,--exclude-libs,ALL', '-lm']
