@@ -42,5 +42,5 @@ CopyFiles('gamedata', 'addons/sourcemod/gamedata',
 )
 
 # Copy binaries.
-for cxx_task in Extension.extensions:
+for cxx_task in ConnectRedux.extensions:
   builder.AddCopy(cxx_task.binary, folder_map['addons/sourcemod/extensions'])
