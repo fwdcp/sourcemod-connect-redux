@@ -35,8 +35,6 @@
 #include <cstddef>
 #include <limits>
 
-using std::size_t;
-
 #include "CDetour/detours.h"
 #include "steam/steamclientpublic.h"
 
@@ -88,7 +86,7 @@ public:
 	unsigned short port;
 } netadr_t;
 
-template <typename T> constexpr size_t NumericStringMaxLength() {
+template <typename T> constexpr std::size_t NumericStringMaxLength() {
     return std::numeric_limits<T>::digits10 + 1 + std::numeric_limits<T>::is_signed + 1;
 }
 
