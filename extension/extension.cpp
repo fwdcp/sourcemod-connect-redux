@@ -31,6 +31,7 @@
 
 #include "extension.h"
 
+#include <limits>
 #include "CDetour/detours.h"
 #include "steam/steamclientpublic.h"
 
@@ -86,7 +87,7 @@ template <typename T> constexpr size_t NumericStringMaxLength() {
     return std::numeric_limits<T>::digits10 + 1 + std::numeric_limits<T>::is_signed + 1;
 }
 
-char *Render64BitSteamID(const CSteamID &steamID) const {
+char *Render64BitSteamID(const CSteamID &steamID) {
 	static char steamIDString[NumericStringMaxLength<uint64_t>()];
 	V_snprintf(steamIDString, sizeof(steamIDString), "%" PRIu64, steamID.ConvertToUint64());
 	return steamIDString;
@@ -265,7 +266,7 @@ DETOUR_DECL_MEMBER9(CBaseServer__ConnectClient, IClient *, netadr_t &, address, 
 	g_pConnectForward->PushString(pchName);
 	g_pConnectForward->PushStringEx(passwordBuffer, 255, SM_PARAM_STRING_UTF8 | SM_PARAM_STRING_COPY, SM_PARAM_COPYBACK);
 	g_pConnectForward->PushString(ipString);
-	g_pConnectForward->PushString(g_lastClientSteamID.Render());
+	g_pConnectForward->PushString(Render64BitSteamID(g_lastClientSteamID));
 	g_pConnectForward->PushStringEx(rejectReason, 255, SM_PARAM_STRING_UTF8 | SM_PARAM_STRING_COPY, SM_PARAM_COPYBACK);
 
 	cell_t retVal = 1;
