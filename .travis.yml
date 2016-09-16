@@ -1,0 +1,36 @@
+language: cpp
+compiler:
+- clang
+
+addons:
+  apt:
+    packages:
+    - g++-multilib
+    - lib32z1-dev
+
+install:
+- git clone https://github.com/alliedmodders/ambuild.git $TRAVIS_BUILD_DIR/../ambuild
+  && cd $TRAVIS_BUILD_DIR/../ambuild && python setup.py build && sudo python setup.py
+  install
+- git clone https://github.com/alliedmodders/metamod-source.git -b 1.10-dev $TRAVIS_BUILD_DIR/../metamod-source
+- git clone https://github.com/alliedmodders/hl2sdk.git -b tf2 $TRAVIS_BUILD_DIR/../hl2sdk-tf2
+- git clone https://github.com/alliedmodders/sourcemod.git --recursive -b 1.8-dev $TRAVIS_BUILD_DIR/../sourcemod
+script:
+- export SOURCEMOD_RELEASE=$(cd $TRAVIS_BUILD_DIR/../sourcemod/build/package/addons/sourcemod
+  && pwd)
+- mkdir $TRAVIS_BUILD_DIR/build && cd $TRAVIS_BUILD_DIR/build
+- python ../configure.py --enable-optimize
+- ambuild
+before_deploy:
+- cd $TRAVIS_BUILD_DIR/build/package
+- zip -r connect-$TRAVIS_TAG-linux.zip *
+deploy:
+  provider: releases
+  api_key:
+    secure: RPmvO2+XNZDGJikkFYCVttKdlwp5Q2is+6uEuCU7SNhEtnfJVNEFb8zozbwQdnXZM4lcXNaHXXVahrZVpbX79wnMjyHNWl9EqduAFbaxB4rASYWQvwajPdBolWlh/OnCLrdiIMjHlrq18oeVhJemKIKalF1nIqCY9z4ihFSNF10=
+  file: $TRAVIS_BUILD_DIR/build/package/connect-$TRAVIS_TAG-linux.zip
+  skip_cleanup: true
+  on:
+    repo: fwdcp/sourcemod-connect-redux
+    tags: true
+    all_branches: true
