@@ -31,6 +31,7 @@
 
 #include "extension.h"
 
+#include <cinttypes>
 #include <limits>
 #include "CDetour/detours.h"
 #include "steam/steamclientpublic.h"
