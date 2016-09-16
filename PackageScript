@@ -28,14 +28,14 @@ def CopyFiles(src, dest, files):
     builder.AddCopy(source_path, dest_entry)
 
 # Include files
-CopyFiles('include', 'addons/sourcemod/scripting/include',
+CopyFiles('', 'addons/sourcemod/scripting/include',
   [
     'connect.inc'
   ]
 )
 
 # GameData files
-CopyFiles('gamedata', 'addons/sourcemod/gamedata',
+CopyFiles('', 'addons/sourcemod/gamedata',
   [
     'connect.games.txt'
   ]
