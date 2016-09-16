@@ -8,7 +8,7 @@
 * This program is free software; you can redistribute it and/or modify it under
 * the terms of the GNU General Public License, version 3.0, as published by the
 * Free Software Foundation.
-* 
+*
 * This program is distributed in the hope that it will be useful, but WITHOUT
 * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
@@ -32,7 +32,7 @@
 #ifndef _INCLUDE_SOURCEMOD_DETOURS_H_
 #define _INCLUDE_SOURCEMOD_DETOURS_H_
 
-#include "extension.hpp"
+#include "extension.h"
 #include <jit/jit_helpers.h>
 #include <jit/x86/x86_macros.h>
 #include "detourhelpers.h"
@@ -216,7 +216,7 @@ private:
 	void *detour_callback;
 	/* The function pointer used to call our trampoline */
 	void **trampoline;
-	
+
 	const char *signame;
 	ISourcePawnEngine *spengine;
 	IGameConfig *gameconf;
