@@ -5,7 +5,7 @@
 
 forward bool OnClientPreConnect(const char name[], char password[255], const char ip[], const char steamID[], char rejectReason[255]);
 
-public Extension:__ext_Connect =
+public Extension __ext_Connect =
 {
 	name = "Connect",
 	file = "connect.ext",
