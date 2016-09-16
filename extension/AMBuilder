@@ -6,6 +6,8 @@ projectName = 'connect'
 # smsdk_ext.cpp will be automatically added later
 sourceFiles = [
   'extension.cpp',
+  'asm/asm.c',
+  'CDetour/detours.cpp',
 ]
 
 ###############

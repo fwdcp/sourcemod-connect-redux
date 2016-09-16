@@ -35,6 +35,8 @@
 #include <cstddef>
 #include <limits>
 
+using std::size_t;
+
 #include "CDetour/detours.h"
 #include "steam/steamclientpublic.h"
 
