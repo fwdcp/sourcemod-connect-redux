@@ -9,6 +9,7 @@ builder.SetBuildFolder('package')
 folder_list = [
   'addons/sourcemod/extensions',
   'addons/sourcemod/scripting/include',
+  'addons/sourcemod/scripting',
   'addons/sourcemod/gamedata',
 ]
 
@@ -26,6 +27,13 @@ def CopyFiles(src, dest, files):
   for source_file in files:
     source_path = os.path.join(builder.sourcePath, src, source_file)
     builder.AddCopy(source_path, dest_entry)
+
+# Script files
+CopyFiles('', 'addons/sourcemod/scripting',
+  [
+    'connect_test.sp'
+  ]
+)
 
 # Include files
 CopyFiles('', 'addons/sourcemod/scripting/include',
